@@ -1,0 +1,235 @@
+:root {
+  --bg-color: #f2f2f7;
+  --text-color: #1c1c1e;
+  --button-bg: #007aff;
+  --button-text: white;
+  --input-bg: #fff;
+  --input-border: #d1d1d6;
+  --copy-success: #34c759;
+}
+
+body.dark {
+  --bg-color: #121212;
+  --text-color: #f0f0f0;
+  --button-bg: #0a84ff;
+  --button-text: white;
+  --input-bg: #1e1e1e;
+  --input-border: #333;
+  --copy-success: #30d158;
+}
+
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.container {
+  background: var(--input-bg);
+  padding: 30px 40px;
+  border-radius: 24px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+  max-width: 420px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 2rem;
+  text-align: center;
+  margin: 0 0 30px 0;
+  color: var(--text-color);
+  user-select: none;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-color);
+  cursor: pointer;
+  user-select: none;
+  gap: 12px;
+}
+
+input[type="number"] {
+  margin-left: auto;
+  width: 80px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--input-border);
+  border-radius: 12px;
+  font-size: 1rem;
+  color: var(--text-color);
+  font-weight: 700;
+  background-color: var(--input-bg);
+  outline-offset: 3px;
+}
+
+input[type="number"]:focus {
+  border-color: var(--button-bg);
+  box-shadow: 0 0 8px var(--button-bg);
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--input-border);
+  border-radius: 8px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  flex-shrink: 0;
+  background-color: var(--input-bg);
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--button-bg);
+  border-color: var(--button-bg);
+}
+
+input[type="checkbox"]:checked::after {
+  content: '✓';
+  color: white;
+  font-weight: 900;
+  font-size: 18px;
+  position: absolute;
+  top: 0;
+  left: 6px;
+  user-select: none;
+}
+
+button {
+  padding: 14px 0;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  font-size: 1.2rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(0, 122, 255, 0.48);
+  cursor: pointer;
+  user-select: none;
+}
+
+button:hover,
+button:focus {
+  background-color: #005ecb;
+  outline: none;
+}
+
+#result {
+  margin-top: 25px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 800;
+  font-size: 1.4rem;
+  text-align: center;
+  color: var(--text-color);
+  word-break: break-word;
+  user-select: text;
+
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.4s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#strength {
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-color);
+  user-select: none;
+}
+
+#copy-message {
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--copy-success);
+  min-height: 22px;
+  user-select: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#copy-message.visible {
+  opacity: 1;
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999;
+  width: 44px;
+  height: 44px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:hover {
+  background-color: #005ecb;
+  transform: scale(1.05);
+}
+#strength-container {
+  margin-top: 10px;
+  width: 100%;
+  background-color: #ddd;
+  border-radius: 10px;
+  height: 12px;
+  overflow: hidden;
+}
+
+#strength-bar {
+  height: 100%;
+  width: 0%;
+  background-color: red;
+  border-radius: 10px;
+  transition: width 0.4s ease, background-color 0.4s ease;
+}
+
+#strength-text {
+  text-align: center;
+  margin-top: 6px;
+  font-weight: 700;
+  font-size: 1rem;
+  user-select: none;
+  color: var(--text-color);
+}
+
